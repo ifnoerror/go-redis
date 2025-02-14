@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/redis/go-redis/v9"
+	"github.com/ifnoerror/go-redis/v9"
 )
 
 // HIDE_END
@@ -216,7 +216,7 @@ func ExampleClient_saddsmembers() {
 		panic(err)
 	}
 
-	// Sort the strings in the slice to make sure the output is lexicographical 
+	// Sort the strings in the slice to make sure the output is lexicographical
 	sort.Strings(res10)
 
 	fmt.Println(res10) // >>> [bike:1 bike:2 bike:3]
@@ -298,8 +298,7 @@ func ExampleClient_sdiff() {
 		panic(err)
 	}
 
-
-	// Sort the strings in the slice to make sure the output is lexicographical 
+	// Sort the strings in the slice to make sure the output is lexicographical
 	sort.Strings(res13)
 
 	fmt.Println(res13) // >>> [bike:2 bike:3]
@@ -357,7 +356,7 @@ func ExampleClient_multisets() {
 		panic(err)
 	}
 
-	// Sort the strings in the slice to make sure the output is lexicographical 
+	// Sort the strings in the slice to make sure the output is lexicographical
 	sort.Strings(res15)
 
 	fmt.Println(res15) // >>> [bike:1 bike:2 bike:3 bike:4]
@@ -384,7 +383,7 @@ func ExampleClient_multisets() {
 		panic(err)
 	}
 
-	// Sort the strings in the slice to make sure the output is lexicographical 
+	// Sort the strings in the slice to make sure the output is lexicographical
 	sort.Strings(res18)
 
 	fmt.Println(res18) // >>> [bike:2 bike:3]
