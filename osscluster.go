@@ -97,6 +97,9 @@ type ClusterOptions struct {
 
 	// UnstableResp3 enables Unstable mode for Redis Search module with RESP3.
 	UnstableResp3 bool
+
+	// disable slave connection
+	DisableSlaveConnection bool
 }
 
 func (opt *ClusterOptions) init() {
@@ -659,9 +662,16 @@ func newClusterState(
 	originHost, _, _ := net.SplitHostPort(origin)
 	isLoopbackOrigin := isLoopback(originHost)
 
+	var disable = nodes.opt.DisableSlaveConnection
+
 	for _, slot := range slots {
 		var nodes []*clusterNode
-		for i, slotNode := range slot.Nodes {
+
+		var realNodes = slot.Nodes
+		if disable && len(realNodes) > 0 {
+			realNodes = []ClusterNode{realNodes[0]}
+		}
+		for i, slotNode := range realNodes {
 			addr := slotNode.Addr
 			if !isLoopbackOrigin {
 				addr = replaceLoopbackHost(addr, originHost)
